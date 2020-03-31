@@ -17,6 +17,6 @@ export class AdvertService {
   }
 
   getProducts(): Observable<HttpResponse<Advert[]>> {
-    return this.http.get<HttpResponse<Advert[]>>(this.baseUrl + '/adverts');
+    return this.http.get<Advert[]>(this.baseUrl + '/adverts', { observe: 'response' });
   }
 }

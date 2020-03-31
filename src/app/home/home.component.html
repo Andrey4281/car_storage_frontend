@@ -1,7 +1,8 @@
-<div class="navbar navbar-inverse bg-inverse">
+<nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand">CARS STORAGE</a>
-</div>
-<div class="col-xs-3 p-a-1">
+</nav>
+<div class="row">
+<div class="col-3 p-a-1">
   <button class="btn btn-block btn-outline-primary">
     Home
   </button>
@@ -9,7 +10,7 @@
     Sign in
   </button>
 </div>
-<div class="col-xs-9">
+<div class="col-9">
   <table class="table table-sm table-striped">
     <thead>
     <tr>
@@ -18,7 +19,18 @@
     </tr>
     </thead>
     <tbody>
+    <tr *ngFor="let advert of adverts">
+      <td>{{advert.id}}</td>
+      <td>{{advert.created}}</td>
+      <td>{{showStatus(advert.status)}}</td>
+      <td>{{advert.user.login}}</td>
+      <td class="align-middle border text-center"><a href="javascript:void(0);"
+                                                     style="color: #0a76ff;" (click)="showAdvertDialog(advert)">{{advert.user.phone}}</a></td>
+      <td>{{advert.car.category}}</td>
+      <td>{{advert.car.brand}}</td>
+    </tr>
 
     </tbody>
   </table>
+</div>
 </div>
