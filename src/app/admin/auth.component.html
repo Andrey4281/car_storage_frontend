@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Auth component</title>
-</head>
-<body>
-      Auth component
-</body>
-</html>
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-text m-auto">
+    <h2>Sign in</h2>
+  </span>
+</nav>
+<div class="p-1">
+  <form novalidate #form="ngForm">
+    <div class="form-group">
+      <label>Login</label>
+      <input class="form-control" name="username"
+             [(ngModel)]="username" required />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-control" type="password" name="password"
+             [(ngModel)]="password" required />
+    </div>
+    <div class="text-xl-center">
+      <button class="btn btn-secondary" routerLink="/">Go back</button>
+      <button class="btn btn-primary" type="submit">Log In</button>
+    </div>
+  </form>
+</div>

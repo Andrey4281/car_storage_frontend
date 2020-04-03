@@ -4,4 +4,7 @@ import {Component} from "@angular/core";
   templateUrl: 'auth.component.html'
 })
 export class AuthComponent {
+  public username: string;
+  public password: string;
+  public errorMessage: string;
 }

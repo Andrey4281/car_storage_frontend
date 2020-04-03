@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {HomeModule} from "./home/home.module";
-import {AuthComponent} from "./admin/auth.component";
-import {AdminModule} from "./admin/admin.module";
+import {StoreFirstGuard} from "./storeFirst.guard";
 
 @NgModule({
   declarations: [
@@ -17,14 +16,18 @@ import {AdminModule} from "./admin/admin.module";
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    AdminModule,
     RouterModule.forRoot([
-      {path: 'home', component: HomeComponent},
-      {path: 'admin', component: AuthComponent},
+      {path: 'home', component: HomeComponent,
+        canActivate: [StoreFirstGuard]},
+      {
+        path: 'admin',
+        loadChildren: './admin/admin.module#AdminModule',
+        canActivate: [StoreFirstGuard]
+      },
       { path: "**", redirectTo: "/home" }
     ])
   ],
-  providers: [],
+  providers: [StoreFirstGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
