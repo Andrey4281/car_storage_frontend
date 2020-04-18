@@ -14,8 +14,9 @@ export class StoreFirstGuard {
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): boolean {
     if (this.firstNavigation) {
+      console.warn(this.firstNavigation);
       this.firstNavigation = false;
-      if (route.component != HomeComponent) {
+      if (route.component !== HomeComponent) {
         this.router.navigateByUrl("/");
         return false;
       }

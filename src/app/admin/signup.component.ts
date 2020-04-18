@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {AdminService} from "./admin.service";
 import {FormBuilder, Validators} from "@angular/forms";
-import {LoginUser} from "./login-user.model";
-import {NewUserResponse} from "./new-user-response.model";
+import {LoginUser} from "../model/login-user.model";
+import {NewUserResponse} from "../model/new-user-response.model";
 import {Router} from "@angular/router";
 
 @Component({
@@ -23,7 +23,7 @@ export class SignupComponent {
               private router: Router) {}
 
   saveUser(): void {
-    this.adminService.saveUser(this.createFromForm()).subscribe(res=>{
+    this.adminService.signUp(this.createFromForm()).subscribe(res=>{
       this.newUserResponse = res.body;
       if (this.newUserResponse.success) {
         this.router.navigateByUrl("/");
