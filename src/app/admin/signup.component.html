@@ -1,0 +1,31 @@
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-text m-auto">
+    <h2>Sign up</h2>
+  </span>
+</nav>
+<div class="bg-danger p-1 text-xl-center"
+     *ngIf="newUserResponse != null">
+  {{newUserResponse.errorMessage}}
+</div>
+<div class="p-1">
+  <form name="userForm" role="form" novalidate (ngSubmit)="saveUser()" [formGroup]="userForm">
+    <div class="form-group">
+      <label>Login</label>
+      <input class="form-control" type="text" name="username" formControlName="login"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-control" type="password" name="password" formControlName="password"/>
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input class="form-control" type="text" name="phone"
+             [textMask]="{mask: phoneMask}" placeholder="7XXXXXXXXXX" formControlName="phone"/>
+    </div>
+    <div class="text-xl-center">
+      <button class="btn btn-secondary" routerLink="/">Go back</button>
+      <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Sing Up</button>
+    </div>
+  </form>
+</div>
+

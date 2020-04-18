@@ -1,9 +1,9 @@
 import {Component} from "@angular/core";
 
 @Component({
-  templateUrl: 'auth.component.html'
+  templateUrl: 'signin.component.html'
 })
-export class AuthComponent {
+export class SignComponent {
   public username: string;
   public password: string;
   public errorMessage: string;
