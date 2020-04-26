@@ -7,6 +7,8 @@ import {SignupComponent} from "./signup.component";
 import {TextMaskModule} from "angular2-text-mask";
 import {CommonModule} from "@angular/common";
 import {AuthGuard} from "./auth.guard";
+import {AdvertEditComponent} from "./advert-edit.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 let routing = RouterModule.forChild([
   { path: "signin", component: SigninComponent },
@@ -16,8 +18,9 @@ let routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-  imports: [FormsModule, routing, TextMaskModule, ReactiveFormsModule, CommonModule],
-  declarations: [SigninComponent, AdminComponent, SignupComponent],
-  providers: [AuthGuard]
+  imports: [FormsModule, routing, TextMaskModule, ReactiveFormsModule, CommonModule, NgbModule],
+  declarations: [SigninComponent, AdminComponent, SignupComponent,AdvertEditComponent],
+  providers: [AuthGuard],
+  entryComponents: [AdvertEditComponent]
 })
 export class AdminModule { }

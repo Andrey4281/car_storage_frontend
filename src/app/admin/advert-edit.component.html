@@ -1,0 +1,75 @@
+
+<div class="row justify-content-center">
+  <div class="col-12">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="modal-header">
+        <h2 *ngIf="advert.id !== null && advert.id !== undefined">Advert № {{advert.id}}</h2>
+        <h2 *ngIf="advert.id === null || advert.id === undefined">Creating new advert</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+      </div>
+      <div class="modal-body scroll-pane">
+
+        <div class="mt-3 mb-3">
+          <span><h5>Advert information:</h5></span>
+        </div>
+
+        <div *ngIf="advert.id !== null && advert.id !== undefined" class="form-group">
+          <label class="form-control-label" for="field_status">Status of advert</label>
+          <select class="form-control shadow-sm bg-white rounded" id="field_status" name="status"
+                  formControlName="status">
+            <option *ngIf="!editForm.get('status')!.value" [ngValue]="null"></option>
+            <option value="New">New</option>
+            <option value="Sales">Sales</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_description">Description</label>
+          <textarea type="text" class="form-control shadow-sm bg-white rounded" rows="5" id="field_description" name="description"
+                    formControlName="description"></textarea>
+        </div>
+
+        <div class="mt-3 mb-3">
+          <span><h5>Car specifications:</h5></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_category">Category</label>
+          <select class="form-control shadow-sm bg-white rounded" id="field_category" name="category"
+                  formControlName="category">
+            <option *ngIf="!editForm.get('category')!.value" [ngValue]="null"></option>
+            <option value="Passenger">Passenger</option>
+            <option value="Truck">Sales</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_brand">Brand</label>
+          <input type="text" class="form-control shadow-sm bg-white rounded" id="field_brand" name="brand"
+                 formControlName="brand"/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_engine">Engine</label>
+          <input type="text" class="form-control shadow-sm bg-white rounded" id="field_engine" name="engine"
+                 formControlName="engine"/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_transmission">Transmission</label>
+          <input type="text" class="form-control shadow-sm bg-white rounded" id="field_transmission" name="transmission"
+                 formControlName="transmission"/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_carcass">Carcass</label>
+          <input type="text" class="form-control shadow-sm bg-white rounded" id="field_carcass" name="carcass"
+                 formControlName="carcass"/>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

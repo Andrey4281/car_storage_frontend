@@ -30,7 +30,7 @@
         <td>
           <div class="row no-gutters">
             <div class="col-6">
-            <button class="btn btn-block btn-primary">
+            <button class="btn btn-block btn-primary" (click)="edit(advert)">
             Edit
             </button></div>
             <div class="col-6">
@@ -44,7 +44,7 @@
 
       </tbody>
     </table>
-    <button class="btn btn-success">
+    <button class="btn btn-success" (click)="create()">
       Create new advert
     </button>
   </div>

@@ -4,16 +4,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
-  templateUrl: 'advert-view.component.html'
+  templateUrl: 'advert-edit.component.html'
 })
-export class AdvertViewComponent {
+export class AdvertEditComponent {
   advert: Advert;
 
   editForm = this.fb.group({
     status: [],
-    login: [],
-    phone: [],
-    created: [],
     description: [],
     category: [],
     brand: [],
@@ -26,15 +23,14 @@ export class AdvertViewComponent {
               private fb: FormBuilder) {}
 
   initialize(): void {
-    this.updateForm(this.advert);
+    if (this.advert.id !== null && this.advert.id !== undefined) {
+      this.updateForm(this.advert);
+    }
   }
 
   updateForm(advert: Advert): void {
     this.editForm.patchValue({
       status: this.showStatus(advert.status),
-      login: advert.user.login,
-      phone: advert.user.phone,
-      created: advert.created,
       description:  advert.description,
       category: advert.car.category,
       brand: advert.car.brand,
@@ -48,6 +44,10 @@ export class AdvertViewComponent {
     this.activeModal.dismiss();
   }
 
+  save(): void {
+
+  }
+
   showStatus(flag: boolean): string {
     let result: string;
     if (flag) {
@@ -57,4 +57,5 @@ export class AdvertViewComponent {
     }
     return result;
   }
+
 }

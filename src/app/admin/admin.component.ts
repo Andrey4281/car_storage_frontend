@@ -4,6 +4,8 @@ import {AdminService} from "./admin.service";
 import {AdvertService} from "../model/advert.service";
 import {HttpParams} from "@angular/common/http";
 import {Advert} from "../model/advert.model";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {AdvertEditComponent} from "./advert-edit.component";
 
 @Component({
   templateUrl: 'admin.component.html'
@@ -13,7 +15,8 @@ export class AdminComponent implements OnInit {
 
   constructor(private adminService: AdminService,
               private router: Router,
-              protected advertService: AdvertService) { }
+              protected advertService: AdvertService,
+              protected modalService: NgbModal) { }
 
   signOut(): void {
     this.adminService.auth_token = null;
@@ -38,5 +41,18 @@ export class AdminComponent implements OnInit {
     this.advertService.getAdverts(params).subscribe(res=>{
       this.adverts = res.body;
       console.warn(this.adverts)});
+  }
+
+  edit(advert: Advert):void {
+    const modalRef = this.modalService.open(AdvertEditComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.advert = advert;
+    modalRef.componentInstance.initialize();
+  }
+
+  create(): void {
+    let advert: Advert = new Advert();
+    const modalRef = this.modalService.open(AdvertEditComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.advert = advert;
+    modalRef.componentInstance.initialize();
   }
 }
