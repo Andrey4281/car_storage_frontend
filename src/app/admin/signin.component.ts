@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {AdminService} from "./admin.service";
-import {AdvertService} from "../model/advert.service";
 import {LoginUser} from "../model/login-user.model";
 import {Router} from "@angular/router";
 
@@ -21,6 +20,7 @@ export class SigninComponent {
         console.warn(res.body);
         if (res.ok) {
           this.adminService.auth_token = res.body.token;
+          this.adminService.current_user = res.body.username;
           this.router.navigateByUrl("/admin/main");
         } else {
           this.errorMessage = "Authentication Failed";

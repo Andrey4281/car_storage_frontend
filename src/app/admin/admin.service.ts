@@ -9,7 +9,8 @@ import {AuthTokenResponse} from "../model/auth-token-response.model";
 @Injectable({ providedIn: 'root' })
 export class AdminService {
   baseUrl: string;
-  auth_token: string;
+  auth_token: string = null;
+  current_user: string = null;
 
   constructor(private http: HttpClient) {
     this.baseUrl = `${AppSettings.PROTOCOL}://${location.hostname}:${AppSettings.PORT}/user/`;

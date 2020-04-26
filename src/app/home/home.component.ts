@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.advertService.getProducts().subscribe(res=>{
+    this.advertService.getAdverts().subscribe(res=>{
       this.adverts = res.body;
       console.warn(this.adverts);
     });
