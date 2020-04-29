@@ -20,6 +20,7 @@ export class SigninComponent {
         console.warn(res.body);
         if (res.ok) {
           this.adminService.auth_token = res.body.token;
+          console.warn('Пришел токкен ' + this.adminService.auth_token);
           this.adminService.current_user = res.body.username;
           this.router.navigateByUrl("/admin/main");
         } else {

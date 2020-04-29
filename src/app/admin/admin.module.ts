@@ -9,6 +9,8 @@ import {CommonModule} from "@angular/common";
 import {AuthGuard} from "./auth.guard";
 import {AdvertEditComponent} from "./advert-edit.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {AdminService} from "./admin.service";
 
 let routing = RouterModule.forChild([
   { path: "signin", component: SigninComponent },
@@ -18,9 +20,8 @@ let routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-  imports: [FormsModule, routing, TextMaskModule, ReactiveFormsModule, CommonModule, NgbModule],
+  imports: [FormsModule, routing, TextMaskModule, ReactiveFormsModule, CommonModule, NgbModule, FontAwesomeModule],
   declarations: [SigninComponent, AdminComponent, SignupComponent,AdvertEditComponent],
-  providers: [AuthGuard],
   entryComponents: [AdvertEditComponent]
 })
 export class AdminModule { }

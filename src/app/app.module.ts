@@ -27,7 +27,6 @@ import {StoreFirstGuard} from "./storeFirst.guard";
       { path: "**", redirectTo: "/home" }
     ])
   ],
-  providers: [StoreFirstGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,7 @@ import {
 } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class StoreFirstGuard {
   private firstNavigation = true;
 
