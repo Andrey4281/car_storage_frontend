@@ -2,12 +2,14 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Advert} from "../model/advert.model";
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from "@angular/forms";
+import {AppSettings} from "../app.settings";
 
 @Component({
   templateUrl: 'advert-view.component.html'
 })
 export class AdvertViewComponent {
   advert: Advert;
+  baseUrl: string;
 
   editForm = this.fb.group({
     status: [],
@@ -23,7 +25,9 @@ export class AdvertViewComponent {
   });
 
   constructor(public activeModal: NgbActiveModal,
-              private fb: FormBuilder) {}
+              private fb: FormBuilder) {
+    this.baseUrl = `${AppSettings.PROTOCOL}://${location.hostname}:${AppSettings.PORT}/api/attached-files/download/`;
+  }
 
   initialize(): void {
     this.updateForm(this.advert);

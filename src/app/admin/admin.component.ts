@@ -8,7 +8,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AdvertEditComponent} from "./advert-edit.component";
 
 @Component({
-  templateUrl: 'admin-new.component.html'
+  templateUrl: 'admin.component.html'
 })
 export class AdminComponent implements OnInit {
   adverts?: Advert[];

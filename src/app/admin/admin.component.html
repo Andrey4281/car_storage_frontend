@@ -2,62 +2,73 @@
   <span class="nav navbar-text m-auto">
     <h2>You own adverts</h2>
   </span>
-</nav>
-<div *ngIf="currentErrorMessage != null" class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>{{currentErrorMessage}}</strong>
-  <button type="button" (click)="clearErrorMessage()" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div *ngIf="currentSuccessMessage != null" class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>{{currentSuccessMessage}}</strong>
-  <button type="button" (click)="clearSuccessMessage()" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="row no-gutters">
-  <div class="col-3 pa-0">
-    <button class="btn btn-block btn-outline-primary">
-      Adverts
-    </button>
+  <form class="form-inline">
     <button class="btn btn-block btn-outline-danger mt-0" (click)="signOut()">
       Sign out
     </button>
-  </div>
-  <div class="col-9">
-    <table class="table table-sm table-striped">
-      <thead>
-      <tr>
-        <th>ID</th><th>Created</th><th>Status</th>
-        <th>Category</th><th>Brand</th><th>Edit/delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let advert of adverts">
-        <td>{{advert.id}}</td>
-        <td>{{advert.created}}</td>
-        <td>{{showStatus(advert.status)}}</td>
-        <td>{{advert.car.category}}</td>
-        <td>{{advert.car.brand}}</td>
-        <td>
-          <div class="row no-gutters">
-            <div class="col-6">
-            <button class="btn btn-block btn-primary" (click)="edit(advert)">
-            Edit
-            </button></div>
-            <div class="col-6">
-            <button class="btn btn-block btn-danger" (click)="delete(advert.id)">
-            Delete
+  </form>
+</nav>
+<div class="justify-content-center">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow mb-5 bg-white rounded">
+        <div class="card-header align-middle shadow">
+          <form class="form-inline">
+            <button class="btn float-right btn-success shadow rounded" (click)="create()">
+              Create new advert
             </button>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      </tbody>
-    </table>
-    <button class="btn btn-success" (click)="create()">
-      Create new advert
-    </button>
+          </form>
+        </div>
+        <div class="card-body" style="padding: 0;">
+          <table class="table table-sm table-striped">
+            <thead>
+            <tr>
+              <th class="border border-top-0 align-middle text-center">ID</th>
+              <th class="border border-top-0 align-middle text-center">Created</th>
+              <th class="border border-top-0 align-middle text-center">Status</th>
+              <th class="border border-top-0 align-middle text-center">Category</th>
+              <th class="border border-top-0 align-middle text-center">Brand</th>
+              <th class="border border-top-0 align-middle text-center">Edit/delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let advert of adverts">
+              <td class="align-middle border text-center">{{advert.id}}</td>
+              <td class="align-middle border text-center">{{advert.created}}</td>
+              <td class="align-middle border text-center">
+                <div *ngIf="!advert.status">
+                  <span class="shadow badge badge-success">{{showStatus(advert.status)}}</span>
+                </div>
+                <div *ngIf="advert.status">
+                  <span class="shadow badge badge-danger">{{showStatus(advert.status)}}</span>
+                </div>
+              </td>
+              <td class="align-middle border text-center">{{advert.car.category}}</td>
+              <td class="align-middle border text-center">{{advert.car.brand}}</td>
+              <td class="align-middle border text-center">
+                <div class="row no-gutters">
+                  <div class="col-6">
+                    <button class="btn btn-block btn-primary" (click)="edit(advert)">
+                      Edit
+                    </button></div>
+                  <div class="col-6">
+                    <button class="btn btn-block btn-danger" (click)="delete(advert.id)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+        </div>
+        <div class="row justify-content-center">
+          <h4>Pagination</h4>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
