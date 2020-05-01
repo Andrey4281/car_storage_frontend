@@ -22,7 +22,9 @@ export class AdvertEditComponent {
 
   editForm = this.fb.group({
     id: [],
+    idCar: [],
     status: [],
+    created: [],
     description: [null, [Validators.required]],
     category: [null, [Validators.required]],
     brand: [null, [Validators.required]],
@@ -47,7 +49,9 @@ export class AdvertEditComponent {
   updateForm(advert: Advert): void {
     this.editForm.patchValue({
       id: advert.id,
-      status: this.showStatus(advert.status),
+      idCar: advert.car.id,
+      status: advert.status,
+      created: advert.created,
       description:  advert.description,
       category: advert.car.category,
       brand: advert.car.brand,
@@ -60,6 +64,7 @@ export class AdvertEditComponent {
   createFromForm(): Advert {
     const currentCar: Car = {
       ...new Car(),
+      id: this.editForm.get(['idCar'])!.value,
       category: this.editForm.get(['category'])!.value,
       brand: this.editForm.get(['brand'])!.value,
       engine: this.editForm.get(['engine'])!.value,
@@ -71,7 +76,9 @@ export class AdvertEditComponent {
       id: this.editForm.get(['id'])!.value,
       status: this.editForm.get(['status'])!.value,
       description: this.editForm.get(['description'])!.value,
-      car: currentCar
+      car: currentCar,
+      user: this.advert.user,
+      created: this.advert.created
     };
   }
 
@@ -83,6 +90,16 @@ export class AdvertEditComponent {
     let currentAdvert: Advert = this.createFromForm();
     console.warn(currentAdvert);
     if (currentAdvert.id !== null && currentAdvert.id !== undefined) {
+      this.advertService.updateAdvert(currentAdvert, this.fileList, this.deleteFileList).subscribe(res=>{
+        if (res.body) {
+          if (res.body.id) {
+            this.activeModal.close(res.body);
+          }
+        } else {
+          this.activeModal.close();
+        }
+      }, error => {this.activeModal.close()
+      });
     } else {
       this.advertService.createAdvert(currentAdvert, this.fileList).subscribe(res=>{
         if (res.body) {
@@ -92,7 +109,7 @@ export class AdvertEditComponent {
         } else {
           this.activeModal.close();
         }
-      }, error => {this.activeModal.close()})
+      }, error => {this.activeModal.close()});
     }
   }
 

@@ -49,6 +49,20 @@ export class AdminComponent implements OnInit {
     const modalRef = this.modalService.open(AdvertEditComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.advert = advert;
     modalRef.componentInstance.initialize();
+    modalRef.result.then(
+      result => {
+        if (result) {
+          this.advertService.getAdvertById(result.id).subscribe(res=>{
+            let index = this.adverts.findIndex(obj=>obj.id === result.id);
+            this.adverts[index] = res.body;
+            this.currentSuccessMessage = `Advert № ${result.id} was edited success`;
+          }, error => {this.currentErrorMessage = 'Error was appeared during editing of advert';});
+        } else {
+          this.currentErrorMessage = 'Error was appeared during editing of advert';
+        }
+      },
+      () => {}
+    );
   }
 
   create(): void {
@@ -59,8 +73,10 @@ export class AdminComponent implements OnInit {
     modalRef.result.then(
       result => {
         if (result) {
-          this.adverts.push(result);
-          this.currentSuccessMessage = `Advert № ${result.id} was created success`;
+          this.advertService.getAdvertById(result.id).subscribe(res=>{
+            this.adverts.push(res.body);
+            this.currentSuccessMessage = `Advert № ${result.id} was created success`;
+          }, error => {this.currentErrorMessage = 'Error was appeared during creating of advert';});
         } else {
           this.currentErrorMessage = 'Error was appeared during creation of advert';
         }

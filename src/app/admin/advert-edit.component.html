@@ -16,12 +16,19 @@
         </div>
 
         <div *ngIf="advert.id !== null && advert.id !== undefined" class="form-group">
+          <label class="form-control-label" for="field_created">Created</label>
+          <input type="text" class="form-control shadow-sm bg-white rounded" id="field_created" name="created"
+                 formControlName="created"
+                 readonly/>
+        </div>
+
+        <div *ngIf="advert.id !== null && advert.id !== undefined" class="form-group">
           <label class="form-control-label" for="field_status">Status of advert</label>
           <select class="form-control shadow-sm bg-white rounded" id="field_status" name="status"
                   formControlName="status">
             <option *ngIf="!editForm.get('status')!.value" [ngValue]="null"></option>
-            <option value="New">New</option>
-            <option value="Sales">Sales</option>
+            <option [ngValue]="false">New</option>
+            <option [ngValue]="true">Sales</option>
           </select>
         </div>
 
