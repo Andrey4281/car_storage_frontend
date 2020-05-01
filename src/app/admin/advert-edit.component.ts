@@ -5,16 +5,20 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {faBackspace, faFilm} from "@fortawesome/free-solid-svg-icons";
 import {AdvertService} from "../model/advert.service";
 import {Car} from "../model/car.model";
+import {AppSettings} from "../app.settings";
+import {AttachedFile} from "../model/attached-file.model";
 
 @Component({
   templateUrl: 'advert-edit.component.html'
 })
 export class AdvertEditComponent {
   deleteIcon = faBackspace;
+  baseUrl: string;
 
   advert: Advert;
   fileList: File[] = [];
   deleteFileList: number[] = [];
+  currentAttachments: AttachedFile[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -29,11 +33,14 @@ export class AdvertEditComponent {
 
   constructor(public activeModal: NgbActiveModal,
               private fb: FormBuilder,
-              protected advertService: AdvertService) {}
+              protected advertService: AdvertService) {
+    this.baseUrl = `${AppSettings.PROTOCOL}://${location.hostname}:${AppSettings.PORT}/api/attached-files/download/`;
+  }
 
   initialize(): void {
     if (this.advert.id !== null && this.advert.id !== undefined) {
       this.updateForm(this.advert);
+      this.currentAttachments = this.advert.attachedFiles;
     }
   }
 
@@ -113,6 +120,11 @@ export class AdvertEditComponent {
    */
   cleanFile(file: File): void {
     this.fileList = this.fileList.filter(obj => obj !== file);
+  }
+
+  cleanExistingFile(id: number): void {
+    this.currentAttachments = this.currentAttachments.filter(obj => obj.id !== id);
+    this.deleteFileList.push(id);
   }
 
 }
