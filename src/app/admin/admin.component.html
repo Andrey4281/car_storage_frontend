@@ -3,6 +3,18 @@
     <h2>You own adverts</h2>
   </span>
 </nav>
+<div *ngIf="currentErrorMessage != null" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{currentErrorMessage}}</strong>
+  <button type="button" (click)="clearErrorMessage()" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div *ngIf="currentSuccessMessage != null" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{currentSuccessMessage}}</strong>
+  <button type="button" (click)="clearSuccessMessage()" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <div class="row no-gutters">
   <div class="col-3 pa-0">
     <button class="btn btn-block btn-outline-primary">
@@ -34,7 +46,7 @@
             Edit
             </button></div>
             <div class="col-6">
-            <button class="btn btn-block btn-danger">
+            <button class="btn btn-block btn-danger" (click)="delete(advert.id)">
             Delete
             </button>
             </div>

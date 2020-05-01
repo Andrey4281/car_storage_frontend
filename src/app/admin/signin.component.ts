@@ -28,4 +28,8 @@ export class SigninComponent {
         }
       }, error => {this.errorMessage = "Authentication Failed";})
   }
+
+  clearMessage() {
+    this.errorMessage = null;
+  }
 }

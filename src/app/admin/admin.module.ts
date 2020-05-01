@@ -10,7 +10,7 @@ import {AuthGuard} from "./auth.guard";
 import {AdvertEditComponent} from "./advert-edit.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {AdminService} from "./admin.service";
+import { NotifierModule } from "angular-notifier";
 
 let routing = RouterModule.forChild([
   { path: "signin", component: SigninComponent },
@@ -20,7 +20,7 @@ let routing = RouterModule.forChild([
 ]);
 
 @NgModule({
-  imports: [FormsModule, routing, TextMaskModule, ReactiveFormsModule, CommonModule, NgbModule, FontAwesomeModule],
+  imports: [FormsModule, routing, TextMaskModule, ReactiveFormsModule, CommonModule, NgbModule, FontAwesomeModule, NotifierModule],
   declarations: [SigninComponent, AdminComponent, SignupComponent,AdvertEditComponent],
   entryComponents: [AdvertEditComponent]
 })

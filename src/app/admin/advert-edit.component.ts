@@ -76,12 +76,16 @@ export class AdvertEditComponent {
     let currentAdvert: Advert = this.createFromForm();
     console.warn(currentAdvert);
     if (currentAdvert.id !== null && currentAdvert.id !== undefined) {
-      console.warn("Обновление объявления");
     } else {
-      console.warn("Создание объявления");
-      this.advertService.createAdverts(currentAdvert, this.fileList).subscribe(res=>{
-        console.warn(res.body);
-      })
+      this.advertService.createAdvert(currentAdvert, this.fileList).subscribe(res=>{
+        if (res.body) {
+          if (res.body.id) {
+            this.activeModal.close(res.body);
+          }
+        } else {
+          this.activeModal.close();
+        }
+      }, error => {this.activeModal.close()})
     }
   }
 

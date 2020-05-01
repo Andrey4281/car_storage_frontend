@@ -1,5 +1,6 @@
 import {Car} from "./car.model";
 import {User} from "./user.model";
+import {AttachedFile} from "./attached-file.model";
 
 export class Advert {
   constructor(
@@ -8,7 +9,8 @@ export class Advert {
     public description?: string,
     public status?: boolean,
     public user?: User,
-    public car?: Car
+    public car?: Car,
+    public attachedFiles?: AttachedFile[]
   )
   {}
 }

@@ -69,7 +69,7 @@
                  formControlName="carcass"/>
         </div>
 
-        <div *ngIf="advert.id !== null && advert.id !== undefined" class="form-group">
+        <div *ngIf="advert.id !== null && advert.id !== undefined && advert.attachedFiles.length > 0" class="form-group">
           <div class="mt-3 mb-3">
             <span><h5>Existing images:</h5></span>
           </div>

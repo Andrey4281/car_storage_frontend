@@ -3,9 +3,12 @@
     <h2>Sign in</h2>
   </span>
 </nav>
-<div class="bg-danger p-1 text-xl-center"
-     *ngIf="errorMessage != null">
-    {{errorMessage}}
+
+<div *ngIf="errorMessage != null" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{errorMessage}}</strong>
+  <button type="button" (click)="clearMessage()" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="p-1">
   <form novalidate (ngSubmit)="authenticate()">

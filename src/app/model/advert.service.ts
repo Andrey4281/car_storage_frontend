@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Advert} from "./advert.model";
 import {AppSettings} from "../app.settings";
@@ -20,7 +20,7 @@ export class AdvertService {
     return this.http.get<Advert[]>(this.baseUrl + '/adverts', { params: req, observe: 'response' });
   }
 
-  createAdverts(advert: Advert, files: File[]): Observable<HttpResponse<Advert>> {
+  createAdvert(advert?: Advert, files?: File[]): Observable<HttpResponse<Advert>> {
     const formData: FormData = new FormData();
     for (let i = 0; i < files.length; i++) {
       formData.append('files', files[i]);
@@ -35,4 +35,10 @@ export class AdvertService {
     return this.http
       .post<Advert>(this.baseUrl + '/adverts/new', formData, { headers: {'Authorization': `Bearer ${this.adminService.auth_token}`}, observe: 'response' });
   }
+
+  deleteAdvert(id?: number): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(this.baseUrl + `/adverts/delete/${id}`, { headers: new HttpHeaders().set('Authorization', `Bearer ${this.adminService.auth_token}`), observe: 'response' });
+  }
+
+
 }

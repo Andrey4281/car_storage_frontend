@@ -1,13 +1,10 @@
 <nav class="navbar navbar-dark bg-dark">
   <span class="nav navbar-text m-auto">
-    <h2>Cars storage</h2>
+    <h2>You own adverts</h2>
   </span>
   <form class="form-inline">
-    <button class="btn btn-outline-danger mt-0" routerLink="/admin/signin">
-      Sign in
-    </button>
-    <button class="btn btn-outline-success mt-0" routerLink="/admin/signup">
-      Sign up
+    <button class="btn btn-block btn-outline-danger mt-0" (click)="signOut()">
+      Sign out
     </button>
   </form>
 </nav>
@@ -16,15 +13,9 @@
     <div class="col-12">
       <div class="card shadow mb-5 bg-white rounded">
         <div class="card-header align-middle shadow">
-          <div  class="float-left"  style="padding-right: 10px">
-            <h3><span>Adverts</span></h3>
-          </div>
           <form class="form-inline">
-            <button class="btn float-right btn-outline-primary shadow rounded">
-              Show filters
-            </button>
-            <button class="btn float-right btn-outline-danger shadow">
-              Delete filters
+            <button class="btn float-right btn-success shadow rounded" (click)="create()">
+              Create new advert
             </button>
           </form>
         </div>
@@ -35,10 +26,9 @@
               <th class="border border-top-0 align-middle text-center">ID</th>
               <th class="border border-top-0 align-middle text-center">Created</th>
               <th class="border border-top-0 align-middle text-center">Status</th>
-              <th class="border border-top-0 align-middle text-center">Login</th>
-              <th class="border border-top-0 align-middle text-center">Phone</th>
               <th class="border border-top-0 align-middle text-center">Category</th>
               <th class="border border-top-0 align-middle text-center">Brand</th>
+              <th class="border border-top-0 align-middle text-center">Edit/delete</th>
             </tr>
             </thead>
             <tbody>
@@ -53,11 +43,21 @@
                   <span class="shadow badge badge-danger">{{showStatus(advert.status)}}</span>
                 </div>
               </td>
-              <td class="align-middle border text-center">{{advert.user.login}}</td>
-              <td class="align-middle border text-center"><a href="javascript:void(0);"
-                                                             style="color: #0a76ff;" (click)="showAdvertDialog(advert)">{{advert.user.phone}}</a></td>
               <td class="align-middle border text-center">{{advert.car.category}}</td>
               <td class="align-middle border text-center">{{advert.car.brand}}</td>
+              <td class="align-middle border text-center">
+                <div class="row no-gutters">
+                  <div class="col-6">
+                    <button class="btn btn-block btn-primary" (click)="edit(advert)">
+                      Edit
+                    </button></div>
+                  <div class="col-6">
+                    <button class="btn btn-block btn-danger" (click)="delete(advert.id)">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -67,7 +67,8 @@
         <div class="row justify-content-center">
           <h4>Pagination</h4>
         </div>
-        </div>
+      </div>
     </div>
   </div>
 </div>
+
