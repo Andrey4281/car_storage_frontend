@@ -12,6 +12,11 @@ import {AdvertEditComponent} from "./advert-edit.component";
 })
 export class AdminComponent implements OnInit {
   adverts?: Advert[];
+
+  totalItems:number = 20;
+  itemsPerPage:number = 10;
+  page:number = 1;
+
   currentSuccessMessage?: string = null;
   currentErrorMessage?: string = null;
 
@@ -37,12 +42,20 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.warn('Current user=' + this.adminService.current_user);
+    this.loadPage();
+  }
+
+  loadPage(page?: number) {
+    let pageToLoad: number = page ? page: this.page;
     let params: HttpParams = new HttpParams();
     params = params.set('userLogin', this.adminService.current_user);
+    params = params.set('page', (pageToLoad - 1).toString());
+    params = params.set('size', this.itemsPerPage.toString());
     this.advertService.getAdverts(params).subscribe(res=>{
       this.adverts = res.body;
-      console.warn(this.adverts)});
+      this.totalItems = Number(res.headers.get('totalSize'));
+      console.warn(this.adverts);
+    });
   }
 
   edit(advert: Advert):void {

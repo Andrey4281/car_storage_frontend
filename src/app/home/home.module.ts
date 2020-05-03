@@ -5,9 +5,10 @@ import {RouterModule} from "@angular/router";
 import {HomeComponent} from "./home.component";
 import {ModelModule} from "../model/model.module";
 import {AdvertModule} from "../advert/advert.module";
+import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, RouterModule, ModelModule, AdvertModule],
+  imports: [BrowserModule, FormsModule, RouterModule, ModelModule, AdvertModule, NgbPaginationModule],
   declarations: [HomeComponent],
   exports: [HomeComponent]
 })
