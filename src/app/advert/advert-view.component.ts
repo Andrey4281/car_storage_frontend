@@ -35,7 +35,7 @@ export class AdvertViewComponent {
 
   updateForm(advert: Advert): void {
     this.editForm.patchValue({
-      status: this.showStatus(advert.status),
+      status: advert.status,
       login: advert.user.login,
       phone: advert.user.phone,
       created: advert.created,

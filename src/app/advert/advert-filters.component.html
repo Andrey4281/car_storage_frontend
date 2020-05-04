@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h2 class="modal-title">Filters</h2>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+          (click)="clear()">&times;
+  </button>
+</div>
+<div class="modal-body scroll-pane">
+  <div class="form-group">
+    <label class="form-control-label" for="field_status">Status of advert</label>
+    <select class="form-control shadow-sm bg-white rounded" id="field_status" name="status" [(ngModel)]="filters.statusFilter">
+      <option [ngValue]="null"></option>
+      <option [ngValue]="false">New</option>
+      <option [ngValue]="true">Sales</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="form-control-label" for="field_category">Category</label>
+    <select class="form-control shadow-sm bg-white rounded" id="field_category" name="category" [(ngModel)]="filters.categoryFilter">
+      <option [ngValue]="null"></option>
+      <option value="Passenger">Passenger</option>
+      <option value="Truck">Truck</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="form-control-label" for="field_date">Date</label>
+    <select class="form-control shadow-sm bg-white rounded" id="field_date" name="date" [(ngModel)]="filters.dateFilter">
+      <option [ngValue]="null"></option>
+      <option value="1">Day ago</option>
+      <option value="3">Three days ago</option>
+      <option value="7">Week ago</option>
+    </select>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary shadow" (click)="useFilter()">Search</button>
+</div>

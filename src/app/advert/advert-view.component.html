@@ -43,8 +43,8 @@
         <select class="form-control shadow-sm bg-white rounded" id="field_status" name="status"
                 formControlName="status" [attr.disabled]="true">
           <option *ngIf="!editForm.get('status')!.value" [ngValue]="null"></option>
-          <option value="New">New</option>
-          <option value="Sales">Sales</option>
+          <option [ngValue]="false">New</option>
+          <option [ngValue]="true">Sales</option>
         </select>
       </div>
 
@@ -65,7 +65,7 @@
                 formControlName="category" [attr.disabled]="true">
           <option *ngIf="!editForm.get('category')!.value" [ngValue]="null"></option>
           <option value="Passenger">Passenger</option>
-          <option value="Truck">Sales</option>
+          <option value="Truck">Truck</option>
         </select>
       </div>
 
