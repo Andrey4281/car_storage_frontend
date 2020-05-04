@@ -9,7 +9,7 @@ import {AppSettings} from "../app.settings";
 import {AttachedFile} from "../model/attached-file.model";
 
 @Component({
-  templateUrl: 'advert-edit.component.html'
+  templateUrl: './advert-edit.component.html'
 })
 export class AdvertEditComponent {
   deleteIcon = faBackspace;

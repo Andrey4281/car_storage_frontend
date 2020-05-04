@@ -5,7 +5,7 @@ import {AdvertService} from "../model/advert.service";
 import {HttpParams} from "@angular/common/http";
 import {Advert} from "../model/advert.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {AdvertEditComponent} from "./advert-edit.component";
+import {AdvertEditComponent} from "../advert/advert-edit.component";
 
 @Component({
   templateUrl: 'admin.component.html'
